@@ -1,0 +1,49 @@
+﻿<Window x:Class="WpfApp1.Vievs.GetAllAn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Vievs"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" SelectedItem="{Binding SelectedTabItem}">
+            <TabItem Name="GoodsTab">
+                <TabItem.Header>
+                    <TextBlock Text="Goods"/>
+                </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактувати" Command="{Binding OpenEditItemWnd}"/>
+                        <MenuItem Header="Видалити" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="ViewAllGoods" ItemsSource="{Binding AllGoods}"
+                          SelectedItem="{Binding SelectedGoods}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name"                                            
+                                            DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridViewColumn Header="NameKind"
+                                            DisplayMemberBinding="{Binding Path=NameKind}"/>
+                            <GridViewColumn Header="Price"
+                                            DisplayMemberBinding="{Binding Path=Price}"/>
+                           
+                          
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+           
+        </TabControl>
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Content="New An" Command="{Binding OpenAddNewGoodsWnd}"/>
+          
+        </StackPanel>
+    </Grid>
+</Window>
